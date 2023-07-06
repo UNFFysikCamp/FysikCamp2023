@@ -1,29 +1,28 @@
 #!/bin/bash
-cd /content/FysikCamp2023
 
-folder_path="/content/drive/MyDrive/Colab Notebooks/UNF_Fysik_Camp/source"
+# This script copies the contents of the FysikCamp2023 folder to the Google Drive folder
+# Change the year here
+source_folder="/content/FysikCamp2023"
 
-if [ ! -d "$folder_path" ]; then
-    mkdir -p "$folder_path"
-    echo "Folder created: $folder_path"
-else
-    echo "Folder already exists: $folder_path"
-fi
+# Folder to exclude from copying
+excluded_folders=("bash_script" ".git")
 
 
+excluded_files=(".gitignore" "README.md" "THIS.ipynb")
 
-ls | grep -E '.ipynb' | while read -r file; do
-  cp "$file" "$folder_path/$new_filename"
-done
+#Change the year here
+destination_folder="/content/drive/MyDrive/Colab Notebooks/UNF_Fysik_Camp2023"
+# Copy folders and contents excluding the specified folder and files, without overwriting existing files
+rsync -av --exclude-from=<(printf "%s\n" "${excluded_folders[@]/#/--exclude=}") --exclude-from=<(printf "%s\n" "${excluded_files[@]/#/--exclude=}") --ignore-existing "$source_folder/" "$destination_folder/"
 
-source_directory="/content/test_colab/"
-destination_directory="/content/drive/MyDrive/Colab Notebooks/UNF_Fysik_Camp"
+echo "Finished creating main folder"
+excluded_files=(".gitignore" "README.md")
+#Change the year here
+destination_folder="/content/drive/MyDrive/Colab Notebooks/UNF_Fysik_Camp2023/source"
+# Copy folders and contents excluding the specified folder and files
+rsync -av --exclude-from=<(printf "%s\n" "${excluded_folders[@]/#/--exclude=}") --exclude-from=<(printf "%s\n" "${excluded_files[@]/#/--exclude=}") "$source_folder/" "$destination_folder/"
 
-for file in "$source_directory"/*.ipynb; do
-  if [ ! -f "$destination_directory/$(basename "$file")" ] && [ "${file##*/}" != "THIS.ipynb" ]; then
-    echo "Copying $file to $destination_directory"
-    cp "$file" "$destination_directory"
-  fi
-done
+echo "Finished creating source folder"
+
 
 echo "Finished"
