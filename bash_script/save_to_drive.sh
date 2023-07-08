@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd /content/FysikCamp2023
 # This script copies the contents of the FysikCamp2023 folder to the Google Drive folder
 # Change the year here
 source_folder="/content/FysikCamp2023"
