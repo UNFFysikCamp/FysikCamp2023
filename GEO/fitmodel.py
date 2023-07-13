@@ -1,10 +1,10 @@
 def fitmodel(path):
     import numpy as np
     import os
-    os.chdir(path)
+    
     # slmatlab
-    os.rename("SLMATLAB.M", "slmatlab.m_bad")
-    os.rename("slmatlab.m_bad", "slmatlab.m")
+    os.rename(path+"SLMATLAB.M", path+"slmatlab.m_bad")
+    os.rename(path+"slmatlab.m_bad", path+"slmatlab.m")
 
     slmatlab_file_path = 'slmatlab.m'  # Replace with the actual file path of "slmatlab.m"
     txt_file_path = 'slmatlab.txt'  # Specify the desired output text file path
