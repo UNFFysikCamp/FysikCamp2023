@@ -3,8 +3,8 @@ def fitmodel(path):
     import os
 
     # slmatlab
-    os.rename(path+"SLMATLAB.M", path+"slmatlab.m_bad")
-    os.rename(path+"slmatlab.m_bad", path+"slmatlab.m")
+    #os.rename(path+"SLMATLAB.M", path+"slmatlab.m_bad")
+    #os.rename(path+"slmatlab.m_bad", path+"slmatlab.m")
 
     slmatlab_file_path = path+'slmatlab.m'  # Replace with the actual file path of "slmatlab.m"
     txt_file_path = path+'slmatlab.txt'  # Specify the desired output text file path
