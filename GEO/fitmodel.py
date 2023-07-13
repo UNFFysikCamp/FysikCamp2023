@@ -1,7 +1,7 @@
-def fit_model():
+def fitmodel(path):
     import numpy as np
     import os
-
+    os.chdir(path)
     # slmatlab
     os.rename("SLMATLAB.M", "slmatlab.m_bad")
     os.rename("slmatlab.m_bad", "slmatlab.m")
